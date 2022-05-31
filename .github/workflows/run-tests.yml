@@ -1,0 +1,38 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+
+    name: Run tests on docker environment
+
+    steps:
+      - name: Ceckout code
+        uses: actions/checkout@v2
+
+      - name: Start up docker compose
+        run: docker-compose up -d
+
+      - name: Wait 1 minute untill docker finished its setup
+        run: |
+          sleep 1m
+          docker ps
+        
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run tests
+        run: docker exec -t laravel-php php artisan test
+
+
+
+
+
