@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Projectors;
-
 
 use App\Events\AccountCreated;
 use App\Events\BrokenMailSent;
@@ -18,8 +16,8 @@ class AccountBalanceProjector extends Projector
     public function onAccountCreated(AccountCreated $event)
     {
         $account = Account::create([
-            'uuid'    => $event->aggregateRootUuid(),
-            'name'    => $event->name,
+            'uuid' => $event->aggregateRootUuid(),
+            'name' => $event->name,
             'user_id' => $event->userId,
         ]);
 
@@ -32,7 +30,7 @@ class AccountBalanceProjector extends Projector
 
         $account->balance += $event->amount;
 
-        if (!AccountService::isBroken($account) && $account->broken_mail_sent) {
+        if (! AccountService::isBroken($account) && $account->broken_mail_sent) {
             $account->broken_mail_sent = false;
         }
 
@@ -46,7 +44,6 @@ class AccountBalanceProjector extends Projector
         $account->balance -= $event->amount;
 
         $account->save();
-
     }
 
     public function onBrokenMailSent(BrokenMailSent $event)

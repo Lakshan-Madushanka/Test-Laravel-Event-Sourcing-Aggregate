@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Redirect;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -49,7 +48,7 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (CouldNotSubtractMoney $exception) {
-           return back()->withErrors(['insufficient_funds' => $exception->getMessage()], 'account');
+            return back()->withErrors(['insufficient_funds' => $exception->getMessage()], 'account');
         });
     }
 }

@@ -28,9 +28,9 @@ class UserAccountController extends Controller
         }
 
         return view('dashboard', [
-            'account'          => $account,
+            'account' => $account,
             'transactionCount' => $transactionCount ?? 0,
-            'history'          => $history ?? null,
+            'history' => $history ?? null,
         ]);
     }
 
@@ -64,7 +64,6 @@ class UserAccountController extends Controller
         session()->flash('status', ['type' => 'success', 'message' => 'Money Deposited']);
 
         return redirect()->route('dashboard');
-
     }
 
     public function subtractMoney(Request $request)
@@ -76,6 +75,5 @@ class UserAccountController extends Controller
         session()->flash('status', ['type' => 'success', 'message' => 'Money Withdrew']);
 
         return redirect()->route('dashboard');
-
     }
 }

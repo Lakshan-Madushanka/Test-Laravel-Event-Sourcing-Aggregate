@@ -2,8 +2,6 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
 class CouldNotSubtractMoney extends \DomainException
 {
     public static function notEnoughFunds(float $amount): self

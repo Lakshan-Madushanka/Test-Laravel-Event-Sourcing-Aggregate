@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Aggregates\AccountAggregate;
 use App\Events\AccountCreated;
@@ -27,7 +25,7 @@ class AccountService
         /*
          * The uuid will be used the retrieve the created account.
          */
-       return self::uuid($attributes['uuid']);
+        return self::uuid($attributes['uuid']);
     }
 
     public static function uuid(string $uuid): ?Account
@@ -49,12 +47,10 @@ class AccountService
         self::makeAggregateRootSnapShot($accountAggregate);
 
         return $accountAggregate;
-
     }
 
     public static function makeAggregateRootSnapShot($accountAggregate)
     {
         $accountAggregate->snapshot();
     }
-
 }

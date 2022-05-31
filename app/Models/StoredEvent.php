@@ -25,7 +25,7 @@ class StoredEvent extends Model
         ])
             ->whereIn('event_class', [
                 'Money Deposited',
-                'Money Withdrew'
+                'Money Withdrew',
             ])
             ->where('aggregate_uuid', $accountId)
             ->latest();

@@ -2,18 +2,17 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
 
 class BrokenMailSent extends ShouldBeStored
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     //public string $uuid;
 
@@ -24,7 +23,7 @@ class BrokenMailSent extends ShouldBeStored
      */
     public function __construct(public string $uuid)
     {
-       // $this->uuid = $uuid;
+        // $this->uuid = $uuid;
     }
 
     /**
